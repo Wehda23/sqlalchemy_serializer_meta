@@ -6,6 +6,10 @@ This module provides a set of serializers for your Flask application, allowing y
 
 To use the serializers in your project, simply include the necessary files in your application directory.
 
+```bash
+pip install sqlalchemy-serializer-meta==0.1.0
+```
+
 ## Usage
 
 Can be used to Serialize SQLAlchemy Model or Flask-SQLAlchemy model.
