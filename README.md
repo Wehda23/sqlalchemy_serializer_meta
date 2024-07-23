@@ -2,6 +2,13 @@
 
 This module provides a set of serializers for your Flask application, allowing you to easily validate and serialize data. The serializers are built with flexibility and extendability in mind, providing features such as nested serialization and integration with Pydantic models.
 
+## 📜 Table of Contents
+1. [Installation](#installation)
+2. [Basic Usage](#usage)
+3. [Creating Custom Serializers](#custom-serializers)
+4. [Validators & Other Utilities](#validators--other-utilities)
+5. [Support My Work](#support-my-work)
+
 ## Installation
 
 To use the serializers in your project, simply include the necessary files in your application directory.
@@ -365,7 +372,7 @@ if __name__ == '__main__':
     app.run(debug=True)
 ```
 
-#### Other Utilities
+## Validators & Other Utilities
 
 You can add a `read_only` to class meta to specify fields that can only be retrieved but not be updated.
 
@@ -423,7 +430,7 @@ class CustomModelSerializer(Serializer):
 By adopting this design, you can create scalable, maintainable, and robust APIs that leverage the power of SQLAlchemy and Flask-SQLAlchemy, ensuring that your application remains flexible and adaptable to changing requirements.
 
 
-## 💖 Support My Work
+## Support My Work
 
 If you find my free content and projects helpful, consider supporting me to enable more learning resources for the community. Your contributions will go towards creating new content and maintaining existing projects.
 
@@ -435,7 +442,7 @@ You can contribute by making a donation through PayPal:
 
 You can contribute by making donation through Buy me coffee:
 
-<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="waheedKh" data-color="#FFDD00" data-emoji="☕"  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/waheedKh)
 
 Your generosity is greatly appreciated!
 
