@@ -2,7 +2,7 @@
 
 This module provides a set of serializers for your Flask application, allowing you to easily validate and serialize data. The serializers are built with flexibility and extendability in mind, providing features such as nested serialization and integration with Pydantic models.
 
-## 📜 Table of Contents
+## Table of Contents
 1. [Installation](#installation)
 2. [Basic Usage](#usage)
 3. [Creating Custom Serializers](#custom-serializers)
@@ -14,7 +14,7 @@ This module provides a set of serializers for your Flask application, allowing y
 To use the serializers in your project, simply include the necessary files in your application directory.
 
 ```bash
-pip install sqlalchemy-serializer-meta==0.1.0
+pip install sqlalchemy-serializer-meta
 ```
 
 ## Usage

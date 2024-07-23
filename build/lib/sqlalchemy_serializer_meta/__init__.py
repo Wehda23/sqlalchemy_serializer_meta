@@ -156,7 +156,9 @@ class Serializer(SerializerInterface):
                             "input": (
                                 value
                                 if key != "password"
-                                else "" if key in self.write_only else ""
+                                else ""
+                                if key in self.write_only
+                                else ""
                             ),
                             "type": f"{e.args[0].__name__}",
                         }
@@ -169,7 +171,9 @@ class Serializer(SerializerInterface):
                             "input": (
                                 value
                                 if key != "password"
-                                else "" if key in self.write_only else ""
+                                else ""
+                                if key in self.write_only
+                                else ""
                             ),
                             "type": f"{type(e).__name__}",
                         }
@@ -363,9 +367,7 @@ class Serializer(SerializerInterface):
         return hasattr(instance, "__table__") and isinstance(instance.__table__, Table)
 
     def __serialize_relationship(
-        self,
-        nested_serializer: Optional["Serializer"],
-        relationship: object,
+        self, nested_serializer: Optional["Serializer"], relationship: object,
     ) -> Any:
         """Helper function to serialize a single nested relationship."""
         if nested_serializer and isinstance(nested_serializer, Serializer):

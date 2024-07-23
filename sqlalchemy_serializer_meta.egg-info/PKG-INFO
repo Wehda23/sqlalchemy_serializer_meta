@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: sqlalchemy_serializer_meta
-Version: 0.1.0
+Version: 0.2.0
 Summary: A simple serializer for SQLAlchemy models and Flask Models
 Home-page: https://github.com/Wehda23/sqlalchemy_serializer_meta
 Author: Waheed Khaled Elhariri
@@ -24,9 +24,20 @@ Requires-Dist: pydantic_core==2.18.4
 
 This module provides a set of serializers for your Flask application, allowing you to easily validate and serialize data. The serializers are built with flexibility and extendability in mind, providing features such as nested serialization and integration with Pydantic models.
 
+## ðŸ“œ Table of Contents
+1. [Installation](#installation)
+2. [Basic Usage](#usage)
+3. [Creating Custom Serializers](#custom-serializers)
+4. [Validators & Other Utilities](#validators--other-utilities)
+5. [Support My Work](#support-my-work)
+
 ## Installation
 
 To use the serializers in your project, simply include the necessary files in your application directory.
+
+```bash
+pip install sqlalchemy-serializer-meta==0.1.0
+```
 
 ## Usage
 
@@ -390,3 +401,75 @@ if __name__ == '__main__':
 - **Focus on Business Logic:** By handling validation and serialization within the serializer, the main view functions can focus on business logic and API response handling, making the codebase cleaner and more maintainable.
 
 By adopting this design, you can create scalable, maintainable, and robust APIs that leverage the power of SQLAlchemy and Flask-SQLAlchemy, ensuring that your application remains flexible and adaptable to changing requirements.
+
+
+## Validators & Other Utilities
+
+You can add a `read_only` to class meta to specify fields that can only be retrieved but not be updated.
+
+Also you can add a `write_only` to a class to specify fields that can be put as inputs but never retrieved
+
+By default field `password` is passively added as a `write_only` field.
+
+
+In your application `validators.py`:
+
+```py
+from sqlalchemy_serializer_meta.validator import BaseValidator
+
+class CustomValidator(BaseValidator):
+    def validate(self, value):
+        if not value:
+            raise self.raise_exception(ValueError, 'Value cannot be empty')
+
+```
+
+In your application `serializers.py`:
+
+```py
+from sqlalchemy_serializer_meta import Serializer
+from your_application.models import CustomModel
+from your_application.validators import CustomValidator
+from pydantic import BaseModel, EmailStr, ValidationError
+from typing import Union
+
+class CustomPydantic(BaseModel):
+    id: str
+    name: str
+    description: EmailStr
+
+class CustomModelSerializer(Serializer):
+    pydantic_model: BaseModel = CustomPydantic
+
+    class Meta:
+        model = CustomModel
+        fields = ['id', 'name', 'description']
+        read_only = ['id']
+        write_only = ['name']
+
+    def validate_name(self, value):
+        CustomValidator(SerializerError).validate(value)
+        return value
+```
+
+## Support My Work
+
+If you find my free content and projects helpful, consider supporting me to enable more learning resources for the community. Your contributions will go towards creating new content and maintaining existing projects.
+
+### How to Contribute
+
+You can contribute by making a donation through PayPal:
+
+[![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://paypal.me/Waheedkhaled?country.x=EG&locale.x=en_US)
+
+You can contribute by making donation through Buy me coffee:
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/waheedKh)
+
+Your generosity is greatly appreciated!
+
+### Why Contribute?
+
+By supporting this project, you help ensure the continued availability of free educational content and the development of new projects. Your contribution makes a meaningful impact on the community of learners.
+
+Thank you for your support!
